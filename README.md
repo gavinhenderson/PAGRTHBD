@@ -7,9 +7,11 @@ My idea is to blend the frontend and backend codebase together by allowing front
 
 Prior art
 
-AWS Amplify (kinda?)
-Probably lots more but I couldnt think of a google search
-Read after scanning the code snippets: In order to run the backend it would probably make sense to provide a cli that you call that points to the Backend.js file which basically makes the exported functions into a REST API.
+- AWS Amplify (kinda?)
+- https://github.com/pacedotdev/oto
+- Probably lots more but I couldnt think of a google search
+
+In order to run the backend it would probably make sense to provide a cli that you call that points to the Backend.js file which basically makes the exported functions into a REST API.
 
 The frontend would probably use some kind of webpack magic plugin (that would have to be written) that would convert the import from a specified backend folder into corresponding rest requests
 
