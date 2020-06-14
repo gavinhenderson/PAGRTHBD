@@ -9,6 +9,7 @@ Prior art
 
 - AWS Amplify (kinda?)
 - https://github.com/pacedotdev/oto
+- https://openapi-generator.tech/ (we could maybe use this under the hood?)
 - Probably lots more but I couldnt think of a google search
 
 In order to run the backend it would probably make sense to provide a cli that you call that points to the Backend.js file which basically makes the exported functions into a REST API.
