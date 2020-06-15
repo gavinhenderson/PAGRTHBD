@@ -1,4 +1,5 @@
 # PAGRTHBD (Name TBC)
+
 > probably-a-good-reason-this-hasnt-been-done (TBC)
 
 I often find myself writing javascript fontend and backend. Often I write a function on the backend and then do a lot of faff to expose that function to the frontend (usually via REST), then more faff on the frontend to consume it.
@@ -16,22 +17,72 @@ In order to run the backend it would probably make sense to provide a cli that y
 
 The frontend would probably use some kind of webpack magic plugin (that would have to be written) that would convert the import from a specified backend folder into corresponding rest requests
 
-backend.js: 
+backend.js:
+
 ```js
-let todos = []
+let todos = [];
 
 export const backendFuncAddTodo = (newTodo) => {
-  todos.push(newTodo)
-  return todos
-}
+  todos.push(newTodo);
+  return todos;
+};
 ```
 
 frontend.js
+
 ```js
 // Could provide some react hook wrapper or something aswell
-import { backendFuncAddTodo } from '../../backend'
+import { backendFuncAddTodo } from "../../backend";
 
-const newTodos = await addTodo({title: 'Added' })
+const newTodos = await addTodo({ title: "Added" });
 
-document.AddToDOMCouldntBeArsedMakingThisCodeRealButYouGetThePoint(newTodos)
+document.AddToDOMCouldntBeArsedMakingThisCodeRealButYouGetThePoint(newTodos);
 ```
+
+## Potential pain in the ass
+
+- Pagination
+- Serialisation
+- Auth
+
+## Use Case
+
+- Person Table
+- Fact Table
+
+mycomponent.js
+
+```js
+import backendFunc from "./mycomponent.backend.js";
+
+myComponent.onclick = () => {
+  backendFunc();
+};
+
+// 'backend' is this => fetch("/api/", { body: { funcToCall: "myFun" } });
+```
+
+mycomponent.backend.js
+
+```js
+import updatePerson from "./services/person/update";
+import deleteFact from "./services/fact/delete";
+
+export const myFunc = () => {
+  updatePerson(changePersonData);
+  deleteFact(oldFact);
+  deleteFact(otherOldFact);
+};
+```
+
+- /src/services
+  - /person/
+    - create.js
+    - retrieve.js
+    - update.js
+    - delete.js
+  - /fact/
+    - create.js
+    - retrieve.js
+    - update.js
+    - delete.js

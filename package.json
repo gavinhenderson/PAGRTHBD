@@ -1,0 +1,22 @@
+{
+  "name": "pagrthbd",
+  "version": "1.0.0",
+  "description": "> probably-a-good-reason-this-hasnt-been-done (TBC)",
+  "main": "index.js",
+  "directories": {
+    "example": "example"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/gavinhenderson/PAGRTHBD.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/gavinhenderson/PAGRTHBD/issues"
+  },
+  "homepage": "https://github.com/gavinhenderson/PAGRTHBD#readme"
+}
