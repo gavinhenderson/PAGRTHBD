@@ -14,8 +14,26 @@ export const parseExports = (inputCode: string) => {
     ({ type }) => type === "ExportNamedDeclaration"
   ) as ExportNamedDeclaration[];
 
+  const inlineExports = exportNameDeclarationNodes.filter(
+    ({ declaration }) => declaration !== null
+  );
+
+  const nonInlineExports = exportNameDeclarationNodes.filter(
+    ({ declaration }) => declaration === null
+  );
+
+  const nonInlineNamedExports = nonInlineExports.map(
+    ({
+      specifiers: [
+        {
+          exported: { name },
+        },
+      ],
+    }) => name
+  );
+
   // TODO This super deep destructuring is probably pretty unsafe
-  const namedExports = exportNameDeclarationNodes.map(
+  const inlineNamedExports = inlineExports.map(
     ({
       declaration: {
         declarations: [
@@ -27,5 +45,5 @@ export const parseExports = (inputCode: string) => {
     }) => name
   );
 
-  return { namedExports };
+  return { namedExports: [...inlineNamedExports, ...nonInlineNamedExports] };
 };
