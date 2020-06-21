@@ -1,5 +1,7 @@
 import { parse } from "@babel/parser";
 
+import { ExportNamedDeclaration } from "@babel/types";
+
 export const parseExports = (inputCode: string) => {
   // TODO The sourceType should be set by config somewhere
   const babelResult = parse(inputCode, { sourceType: "module" });
@@ -8,12 +10,11 @@ export const parseExports = (inputCode: string) => {
     program: { body: programBody },
   } = babelResult;
 
-  // TODO Make this not an any
-  const exportNameDeclarationNodes: any[] = programBody.filter(
+  const exportNameDeclarationNodes = programBody.filter(
     ({ type }) => type === "ExportNamedDeclaration"
-  );
+  ) as ExportNamedDeclaration[];
 
-  // TODO This super deep destructuring is probably pretty unsafe, although if we fix the types that might not matter
+  // TODO This super deep destructuring is probably pretty unsafe
   const namedExports = exportNameDeclarationNodes.map(
     ({
       declaration: {
@@ -23,10 +24,8 @@ export const parseExports = (inputCode: string) => {
           },
         ],
       },
-    }: {
-      declaration: any;
     }) => name
-  ) as any;
+  );
 
   return { namedExports };
 };
