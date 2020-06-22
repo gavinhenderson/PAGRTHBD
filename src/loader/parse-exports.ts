@@ -10,6 +10,11 @@ export const parseExports = (inputCode: string) => {
     program: { body: programBody },
   } = babelResult;
 
+  const defaultExportNode = programBody.find(
+    (node) => node.type === "ExportDefaultDeclaration"
+  );
+  const hasDefaultExport = !!defaultExportNode;
+
   const exportNameDeclarationNodes = programBody.filter(
     ({ type }) => type === "ExportNamedDeclaration"
   ) as ExportNamedDeclaration[];
@@ -25,5 +30,14 @@ export const parseExports = (inputCode: string) => {
     .flatMap(({ specifiers }) => specifiers)
     .map(({ exported: { name } }) => name);
 
-  return { namedExports: [...inlineNamedExports, ...nonInlineNamedExports] };
+  const namedExports = [...inlineNamedExports, ...nonInlineNamedExports];
+
+  if (hasDefaultExport === false && namedExports.length === 0) {
+    throw new Error("Input has no default or named exports");
+  }
+
+  return {
+    namedExports,
+    hasDefaultExport,
+  };
 };
