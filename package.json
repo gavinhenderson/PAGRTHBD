@@ -7,10 +7,10 @@
     "example": "example"
   },
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "loader:build": "tsc",
-    "example:build": "cd example && webpack && cd ../",
-    "build": "npm run loader:build && npm run example:build"
+    "test": "jest",
+    "loader": "npm run --prefix src/loader",
+    "example": "npm run --prefix example",
+    "server": "npm run --prefix src/server"
   },
   "repository": {
     "type": "git",
@@ -23,16 +23,11 @@
   },
   "homepage": "https://github.com/gavinhenderson/PAGRTHBD#readme",
   "dependencies": {
-    "@babel/parser": "^7.10.2",
-    "@types/jest": "^26.0.0",
-    "ts-loader": "^7.0.5",
-    "typescript": "^3.9.5",
-    "webpack-cli": "^3.3.11"
+    "@types/jest": "^26.0.3",
+    "ts-jest": "^26.1.1",
+    "typescript": "^3.9.5"
   },
   "devDependencies": {
-    "@babel/types": "^7.10.2",
-    "jest": "^26.0.1",
-    "ts-jest": "^26.1.0",
-    "webpack": "^4.43.0"
+    "jest": "^26.0.1"
   }
 }

@@ -7,7 +7,7 @@ module.exports = {
     rules: [
       {
         test: /test\.backend\.js$/,
-        loader: path.resolve("../dist/loader/loader"),
+        loader: path.resolve("../src/loader/dist/loader"),
       },
     ],
   },

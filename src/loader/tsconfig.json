@@ -1,0 +1,14 @@
+{
+  "compilerOptions": {
+    "module": "UMD",
+    "noImplicitAny": true,
+    "sourceMap": true,
+    "outDir": "./dist/",
+    "moduleResolution": "node",
+    "esModuleInterop": true,
+    "lib": ["es2019"],
+    "allowJs": true
+  },
+  "include": ["**/*"],
+  "exclude": ["node_modules", "**/*.spec.ts", "dist/**/*"]
+}

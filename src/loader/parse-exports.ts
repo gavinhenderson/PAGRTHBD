@@ -1,6 +1,6 @@
 import { parse } from "@babel/parser";
 
-import { ExportNamedDeclaration } from "@babel/types";
+import { ExportNamedDeclaration, VariableDeclaration } from "@babel/types";
 
 export const parseExports = (inputCode: string) => {
   // TODO The sourceType should be set by config somewhere
@@ -21,8 +21,9 @@ export const parseExports = (inputCode: string) => {
 
   const inlineNamedExports = exportNameDeclarationNodes
     .filter(({ declaration }) => declaration !== null)
-    .flatMap(({ declaration: { declarations } }) => declarations)
-    .map(({ id: { name } }) => name);
+    .map(({ declaration }) => declaration)
+    .flatMap(({ declarations }: VariableDeclaration) => declarations)
+    .map(({ id: { name } }: any) => name);
 
   const nonInlineNamedExports = exportNameDeclarationNodes
     .filter(({ declaration }) => declaration === null)
