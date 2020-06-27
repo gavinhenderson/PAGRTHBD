@@ -1,11 +1,11 @@
 type ExportsDefinition = {
   namedExports: string[];
-  hasDefault: boolean;
+  hasDefaultExport: boolean;
 };
 
 const generateLoaderContent = (
   callBackendFunc: string,
-  { namedExports, hasDefault }: ExportsDefinition
+  { namedExports, hasDefaultExport }: ExportsDefinition
 ) => {
   const namedExportsStrings = namedExports.map(
     (currentExport) =>
@@ -19,7 +19,7 @@ const generateLoaderContent = (
   return [
     callBackend,
     ...namedExportsStrings,
-    hasDefault ? defaultExport : "",
+    hasDefaultExport ? defaultExport : "",
   ].filter(emptyStrings);
 };
 

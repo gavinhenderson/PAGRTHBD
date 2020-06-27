@@ -7,7 +7,7 @@ const CALL_BACKEND_FUNC = `(funcName) => (param) => { console.log(param, "test",
 it("outputs one named export correctly", () => {
   const result = generateLoaderContent(CALL_BACKEND_FUNC, {
     namedExports: ["testExports"],
-    hasDefault: false,
+    hasDefaultExport: false,
   });
 
   expect(result).toHaveLength(2);
@@ -22,7 +22,7 @@ it("outputs one named export correctly", () => {
 it("outputs one named export correctly", () => {
   const result = generateLoaderContent(CALL_BACKEND_FUNC, {
     namedExports: ["testExports", "secondExport"],
-    hasDefault: false,
+    hasDefaultExport: false,
   });
 
   expect(result).toHaveLength(3);
@@ -40,7 +40,7 @@ it("outputs one named export correctly", () => {
 it("outputs default export correctly", () => {
   const result = generateLoaderContent(CALL_BACKEND_FUNC, {
     namedExports: [],
-    hasDefault: true,
+    hasDefaultExport: true,
   });
 
   expect(result).toHaveLength(2);
@@ -55,7 +55,7 @@ it("outputs default export correctly", () => {
 it("outputs default export with multiple named exports", () => {
   const result = generateLoaderContent(CALL_BACKEND_FUNC, {
     namedExports: ["testExports", "secondExport"],
-    hasDefault: true,
+    hasDefaultExport: true,
   });
 
   expect(result).toHaveLength(4);

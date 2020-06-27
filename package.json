@@ -8,7 +8,9 @@
   },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "build": "tsc"
+    "loader:build": "tsc",
+    "example:build": "cd example && webpack && cd ../",
+    "build": "npm run loader:build && npm run example:build"
   },
   "repository": {
     "type": "git",
