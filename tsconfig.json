@@ -6,7 +6,8 @@
     "outDir": "./dist/",
     "moduleResolution": "node",
     "esModuleInterop": true,
-    "lib": ["es2019"]
+    "lib": ["es2019"],
+    "allowJs": true
   },
   "include": ["src/**/*"],
   "exclude": ["node_modules", "**/*.spec.ts"]
