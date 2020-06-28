@@ -2,6 +2,7 @@ import path from "path";
 import { default as express, Request, Response } from "express";
 import recursiveReadDir from "recursive-readdir";
 import { Stats } from "fs";
+import bodyParser from "body-parser";
 
 // TODO Make this configurable
 const WORKING_DIR = path.join(__dirname, "../../example");
@@ -27,8 +28,15 @@ type BackendFunctions = {
   }
 
   const app = express();
+  const jsonParser = bodyParser.json();
 
-  app.get("/", (req: Request, res: Response) => res.send("Hello World!"));
+  app.post("/api/PAGRTHBD", jsonParser, async (req: Request, res: Response) => {
+    const { basepath, functionName, params } = req.body;
+    const file = backendFuctions[basepath];
+    const calledFunction = file[functionName];
+    const result = await calledFunction(...params);
+    res.send({ result });
+  });
 
   app.listen(PORT, () =>
     console.log(`Example app listening at http://localhost:${PORT}`)
