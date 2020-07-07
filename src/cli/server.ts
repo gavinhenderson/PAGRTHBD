@@ -7,7 +7,6 @@ import cors from "cors";
 
 // TODO Make this configurable
 const WORKING_DIR = path.join(__dirname, "../../example");
-const PORT = 3000;
 
 // TODO Make this faster by not going through node modules or dist
 // TODO Make backend.js configurable
@@ -40,10 +39,6 @@ const setupServer = async () => {
     const returnValue = await calledFunction(...params);
     res.send({ returnValue });
   });
-
-  app.listen(PORT, () =>
-    console.log(`Example app listening at http://localhost:${PORT}`)
-  );
 
   return app;
 };
