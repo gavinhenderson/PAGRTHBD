@@ -19,7 +19,7 @@ type BackendFunctions = {
   };
 };
 
-(async () => {
+const setupServer = async () => {
   // TODO this section should really be its own tested thing
   const backendFiles = await recursiveReadDir(WORKING_DIR, [ignoreFunc]);
   let backendFuctions: BackendFunctions = {};
@@ -44,4 +44,8 @@ type BackendFunctions = {
   app.listen(PORT, () =>
     console.log(`Example app listening at http://localhost:${PORT}`)
   );
-})();
+
+  return app;
+};
+
+export default setupServer;
