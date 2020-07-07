@@ -5,16 +5,16 @@ type ExportsDefinition = {
 
 const generateLoaderContent = (
   callBackendFunc: string,
+  basename: string,
   { namedExports, hasDefaultExport }: ExportsDefinition
 ) => {
   const namedExportsStrings = namedExports.map(
     (currentExport) =>
-      `export const ${currentExport} = callBackendFunc("${currentExport}");`
+      `export const ${currentExport} = callBackendFunc("${currentExport}", "${basename}");`
   );
 
   const callBackend = `const callBackendFunc = ${callBackendFunc}`;
-  const defaultExport =
-    'const defaultExport = callBackendFunc("defaultExport"); export default defaultExport;';
+  const defaultExport = `const defaultExport = callBackendFunc("defaultExport", "${basename}"); export default defaultExport;`;
 
   return [
     callBackend,

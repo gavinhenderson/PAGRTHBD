@@ -3,6 +3,7 @@ import { default as express, Request, Response } from "express";
 import recursiveReadDir from "recursive-readdir";
 import { Stats } from "fs";
 import bodyParser from "body-parser";
+import cors from "cors";
 
 // TODO Make this configurable
 const WORKING_DIR = path.join(__dirname, "../../example");
@@ -30,12 +31,14 @@ type BackendFunctions = {
   const app = express();
   const jsonParser = bodyParser.json();
 
-  app.post("/api/PAGRTHBD", jsonParser, async (req: Request, res: Response) => {
-    const { basepath, functionName, params } = req.body;
-    const file = backendFuctions[basepath];
-    const calledFunction = file[functionName];
-    const result = await calledFunction(...params);
-    res.send({ result });
+  app.use(cors());
+  app.post("/api/function", jsonParser, async (req: Request, res: Response) => {
+    const { basePath, funcName, params } = req.body;
+
+    const file = backendFuctions[basePath];
+    const calledFunction = file[funcName];
+    const returnValue = await calledFunction(...params);
+    res.send({ returnValue });
   });
 
   app.listen(PORT, () =>

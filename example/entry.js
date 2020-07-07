@@ -1,3 +1,6 @@
 import { helloWorld } from "./test.backend.js";
 
-helloWorld("Yo param", "second param");
+(async () => {
+  const result = await helloWorld("Yo param", "second param");
+  console.log({ result });
+})();
