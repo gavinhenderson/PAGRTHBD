@@ -18,15 +18,7 @@ type BackendFunctions = {
   };
 };
 
-const setupServer = async () => {
-  // TODO this section should really be its own tested thing
-  const backendFiles = await recursiveReadDir(WORKING_DIR, [ignoreFunc]);
-  let backendFuctions: BackendFunctions = {};
-
-  for (let file of backendFiles) {
-    backendFuctions[path.basename(file)] = require(file);
-  }
-
+const setupServer = async (backendFuctions: BackendFunctions) => {
   const app = express();
   const jsonParser = bodyParser.json();
 
