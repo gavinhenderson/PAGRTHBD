@@ -1,5 +1,5 @@
-export const helloWorld = (firstParam, secondParam) => {
-  console.log("HELLO WORLD");
+export const helloWorld = (context) => (firstParam, secondParam) => {
+  console.log("HELLO WORLD", context);
   return firstParam + secondParam;
 };
 
