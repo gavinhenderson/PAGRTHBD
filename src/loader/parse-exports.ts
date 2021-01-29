@@ -31,7 +31,7 @@ export const parseExports = (inputCode: string) => {
     .flatMap(({ specifiers }) => specifiers)
     .map(({ exported: { name } }) => name);
 
-  const namedExports = [...inlineNamedExports, ...nonInlineNamedExports];
+  const namedExports = [].concat(inlineNamedExports, nonInlineNamedExports);
 
   if (hasDefaultExport === false && namedExports.length === 0) {
     throw new Error("Input has no default or named exports");
